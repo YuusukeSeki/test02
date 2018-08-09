@@ -3,36 +3,34 @@
 // Author : Yusuke Seki
 //=============================================================================
 #include "main.h"
-#include "cat.h"
 #include "human.h"
-#include <iostream>
-#include <string>
+#include "cat.h"
+#include "dog.h"
+#include "ultraman.h"
 
-//=============================================================================
+//---------- 定数定義
+static const int NUM_PET = 3;
+
+//-----------------------------------------------------------------------------
 // メイン関数
-//=============================================================================
+//-----------------------------------------------------------------------------
 int main(void)
 {
-	// Cat 実体生
+	// オブジェクト生成
+	Human*		pHuman			= new Human;
+	Pet*		pPet[NUM_PET]	= { new Cat, new Dog, new Ultraman };
 
-	Cat		a("タマ");
-	Cat*	p = new Cat;
-	Cat		b( a );
-	Cat		c = b;
+	// 遊ばせる
+	for( int i = 0; i < NUM_PET; i++ ){
+		pHuman->SetPet( pPet[i] );
+		pHuman->Play();
+	}
 
-	// 実体破棄
-	delete p;
-	p = NULL;
-
-	std::cout << b.GetName() << std::endl;
-	std::cout << c.GetName() << std::endl;
-
-	a.Play();
-
-	//Human humanA;
-	//humanA.Play( &a );
-
-//	std::string* strName = cat.strName.c_str();	// const char型のポインターを返り値として渡す関数
+	// オブジェクト破棄
+	delete pHuman;
+	for( int i = 0; i < NUM_PET; i++ ){
+		delete pPet[i];
+	}
 
 	// 入力待ち
 	rewind(stdin);
