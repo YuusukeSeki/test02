@@ -1,24 +1,20 @@
 //=============================================================================
-// human class [human.h]
+// 基底クラス[pet.h]
 // Author : Yusuke Seki
 //=============================================================================
-#ifndef _HUMAN_H_
-#define _HUMAN_H_
+#ifndef _PET_H_
+#define _PET_H_
 
 //---------- インクルードファイル
 #include "main.h"
-#include "pet.h"
 
 //---------- クラスの定義
-class Human
+class Pet
 {
 public:
-	Human(){}
-	Human( Pet* pPet ) : m_pPet( pPet ){}
-	void SetPet( Pet* pPet ){ m_pPet = pPet; }
-	void Play(){ m_pPet->Play(); }
+	virtual ~Pet(){}
+	virtual void Play() = 0;
 private:
-	Pet* m_pPet;
 };
 
 #endif
